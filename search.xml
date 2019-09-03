@@ -12,12 +12,6 @@
       
       
       
-        <tags>
-            
-            <tag> tags </tag>
-            
-        </tags>
-      
     </entry>
     
     
@@ -31,12 +25,6 @@
       
       
       
-        <tags>
-            
-            <tag> archives </tag>
-            
-        </tags>
-      
     </entry>
     
     
@@ -49,12 +37,6 @@
         <content type="html"><![CDATA[]]></content>
       
       
-      
-        <tags>
-            
-            <tag> categories </tag>
-            
-        </tags>
       
     </entry>
     
