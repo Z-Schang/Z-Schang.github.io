@@ -4,13 +4,25 @@
   
     
     <entry>
-      <title>畅谈CSS</title>
+      <title>HTML+CSS 知识体系</title>
       <link href="/2019/09/03/%E7%95%85%E8%B0%88CSS/"/>
       <url>/2019/09/03/%E7%95%85%E8%B0%88CSS/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p><strong>HTML+CSS 的知识框架梳理</strong></p><p>本文结合 winter 老师 《重学前端》系列课程结合自己已学知识，构建起来的 HTML + CSS 知识体系。<br>随着学习深入，会不定期更新，欢迎留言讨论~</p><hr><h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><ul><li><p>元素</p><ul><li><p>文档元信息：有些是专门用于SEO的</p><ul><li><p>head：盛放其他语义类标签容器</p></li><li><p>title：表示文档标题</p></li><li><p>base：历史遗留标签，只有一个，用于改变全局的链接网址，几乎不用</p></li><li><p>meta：键值对，通用的元信息表示标签 含name 和 content【H5 的 charset 编码属性】</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta charset=<span class="string">"utf-8"</span>&gt; 放在 head 第一个，确保 HTML 编码格式的正确</span><br><span class="line">&lt;meta name=<span class="string">"viewport"</span> content=<span class="string">""</span>&gt; 移动端的开发标准</span><br><span class="line">&lt;meta name=<span class="string">"author/description/application-name/keywords/referrer"</span> content=<span class="string">"balabala"</span>&gt;</span><br><span class="line">&lt;meta http-equiv=<span class="string">"content-type"</span> content=<span class="string">"text/html; charset=UTF-8"</span>&gt;指定http编码方式</span><br><span class="line">其他：</span><br><span class="line">    content-language:指定内容语言</span><br><span class="line">        <span class="keyword">default</span>-style:制定默认样式表</span><br><span class="line">        refresh:刷新</span><br><span class="line">        <span class="keyword">set</span>-cookie:模拟http头<span class="keyword">set</span>-cookie,设置cookie</span><br></pre></td></tr></table></figure></li></ul></li><li><p>语义标签</p></li><li><p>表单表格</p></li><li><p>替换型标签</p><ul><li>凡是替换型元素，都用 src 来引用文件的（style标签并非替换型元素）</li><li>img：性能角度考虑，固定图片宽高，避免尺寸发生变化触发重排。</li></ul></li><li><p>链接标签 </p><ul><li><p>link：通过rel成为特定的link标签</p><ul><li>canonical(权威的，主URL)</li><li>alternate(替换，RSS订阅)</li><li>prev、next：网页序列有助于页面批量展示</li><li>外部资源类：<ul><li>icon</li><li>dns-prefetch：提前对一个域名做DNS查询 ( href只有域名有意义 ) </li><li>preconnect：提前对一个服务器建立tcp连接</li><li>prefetch：提前取 href 指定的 url 内容</li><li>preload：提前加载 href 指定的 url 内容</li><li>prerender：提前渲染 href 指定的 url 内容</li><li>modulepreload：预先加载JS模块，保证 ( 多个 )  JS 模块不必在执行时才加载，下载并放入内存（并行下载提高性能）</li><li>stylesheet：样式表导入，配合 type=”text/css”（默认）</li><li>pingback：表示网页被引用</li></ul></li></ul></li><li><p>a标签：anchor锚点的意思，标识文档中特定位置，文本型超链接</p><ul><li>href 属性，链接</li><li>name 属性：链接目标</li><li>rel 属性参考文档</li></ul></li><li><p>area标签：非文本型链接，区域型链接</p><ul><li><p>shape属性：搭配 map 使用</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"shapes.jpg"</span> <span class="attr">usemap</span>=<span class="string">"shapes"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">map</span> <span class="attr">name</span>=<span class="string">"shapes"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">area</span> <span class="attr">shape</span>=<span class="string">"rect"</span> <span class="attr">coords</span>=<span class="string">"50,50,100,100"</span>&gt;</span><span class="tag">&lt;/<span class="name">area</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">img</span>&gt;</span></span><br></pre></td></tr></table></figure><ul><li>圆形 circle circ coords (x, y, r)</li><li>矩形 coords (x1, y1) / (x2, y2)</li><li>多边形 poly &gt;=6个值，表示多边形各个顶点</li></ul></li></ul></li></ul></li></ul></li><li><p>语言</p><ul><li>语法：源自 SGML <ul><li>标签 Element   <code>&lt;tagname&gt;...&lt;/tagname&gt;</code></li><li>文本 Text</li><li>注释</li><li>DTD document type defination 文档类型定义，</li><li>处理信息 ProcessingIntruction</li></ul></li><li>命名空间</li></ul></li><li><p>补充标准</p><ul><li>ARIA：Accessible Rich Internet Applications 可访问性标准，提高页面可访问性<ul><li>设备访问</li><li>环境、人群访问友好性</li><li>核心属性 role<ul><li>widget：可交互组件=》控件【Slider、Timer、Radio等】</li><li>structure：文档中的结构</li><li>window：窗体</li></ul></li></ul></li></ul></li></ul><h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><ul><li><p>语言</p><ul><li><p>选择器</p><ul><li><p>简单：某一特征</p><ul><li>类型选择器：选择svg中的a - svg|a {}</li><li>全体选择器</li><li>id选择器</li><li>class选择器</li><li>属性选择器：根据元素属性选中<ul><li>div[att]</li><li>div[att=”val”]</li></ul></li><li>伪类选择器：含普通型和函数型<ul><li>树结构关系伪类选择器：<ul><li>:root</li><li>:empty：无子节点，空文本结点除外</li><li>:nth-child(even)  </li><li>:nth-child(4n - 1) </li></ul></li><li>链接与行为伪类选择器：<ul><li>:any-link</li><li>:link :hover: visited :active</li><li>:focus</li><li>:target</li></ul></li><li>逻辑伪类选择器：<ul><li>:not</li></ul></li></ul></li></ul></li><li><p>复合：连写 div:nth-of-type(1)</p></li><li><p>复杂：符号连接 div&gt;ul li</p><p>.c, .a&gt;.b.d</p><ul><li>.c</li><li>.a&gt;.b.d<ul><li>.a</li><li>.b.d<ul><li>.b</li><li>.d</li></ul></li></ul></li></ul><p>“ ”：后代</p><p>“&gt;”：子代</p><p>“<del>“：后继，.a</del>.b同父，排在a的后面中b的结点</p><p>“+”：后继，直接后继一个</p></li><li><p>列表：逗号分隔的复杂选择器 div span, ul li</p></li><li><p>伪元素</p><ul><li><p>::first-line：第一行，必须出现在最内层的块级元素之内。</p></li><li><p>::first-letter：第一字母</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">p::first-letter&#123;</span><br><span class="line">    text-transform: uppercase;</span><br><span class="line">    font-size:2em;</span><br><span class="line">    float:left;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>::before</p></li><li><p>::after，必有content</p></li></ul></li></ul></li><li><p>单位</p></li><li><p>@rule</p><ul><li><p>charset：提示编码方式 @charset “utf-8”;</p></li><li><p>import：引入一个CSS文件 @import “index.css”;</p></li><li><p>media：对设备类型进行判断 @media</p></li><li><p>page：分页媒体访问网页时表现设置，页面是特殊的盒模型结构，除页面本身可设置周围的盒</p><p>@page {margin: 10px;}</p></li><li><p>keyframes：动画关键帧 @keyframe dm{from {} to {}}</p></li><li><p>font-face：字体 @font-face {font-family: xxx; src: url(…); }    p{ font-family: xxx}</p></li><li><p>support：检查环境特性，与media 比较类似</p></li><li><p>viewport：兼容不是很好，被HTML的 meta 代替</p></li></ul></li></ul></li><li><p>功能</p><ul><li>布局<ul><li>正常流：依次排列，排不下换行。<ul><li>原理：用inline-block作为内容容器，利用块级格式化上下文纵向排布和行内级格式化上下文横向排布完成布局。</li></ul></li><li>弹性布局<ul><li>flex：分行、计算主轴、计算交叉轴</li></ul></li></ul></li><li>绘制<ul><li>颜色形状<ul><li>RGB：可构成所有颜色</li><li>CMYK：三原色( 品红、黄、青 ) + 黑色</li><li>HSL：色相、纯度、明度</li><li>RGBA：Alapha 色彩空间</li><li>渐变<ul><li>线性：linear-gradient(dir, color1, color2);    dir: to top left / 123deg</li><li>放射性：radial-gradient(centerPoint, color1, color2) </li></ul></li></ul></li><li>文字文本</li></ul></li><li>交互<ul><li>动画<ul><li>animation<ul><li>animation-duration 动画时长</li><li>animation-name 动画名</li><li>animation-timing-function 时间曲线</li><li>animation-delay 动画延迟</li><li>animation-iteration-count 动画播放次数</li><li>animation-direction 动画方向</li></ul></li><li>transition<ul><li>transition-property 变化属性</li><li>transition-duration 变换时长</li><li>transition-timing-function 时间曲线</li><li>transition-delay 动画延迟</li></ul></li></ul></li><li>其他交互</li></ul></li></ul></li></ul><p>### </p>]]></content>
       
       
+      <categories>
+          
+          <category> CSS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Web前端 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -49,35 +61,6 @@
         <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
       
       
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>My awesome title</title>
-      <link href="/2016/10/12/test-my-site/"/>
-      <url>/2016/10/12/test-my-site/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      <categories>
-          
-          <category> 分类1 </category>
-          
-          <category> 分类2 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 标签1 </tag>
-            
-            <tag> 标签2 </tag>
-            
-        </tags>
       
     </entry>
     
