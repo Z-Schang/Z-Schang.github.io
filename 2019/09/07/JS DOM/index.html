@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JavaScript DOM - Schang&#39;s Blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="schang,"> 
+    <meta name="description" content=" JS DOM学习笔记
+DOM 即 Document Object Model，文档对象模型，是 JS 操作 HTML 元素的标准编程入口。
+
+DOM 节点类型
+元素节点
+属性节点
+文本节点
+注释节,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Schang&#39;s Blog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">Schang&#39;s Blog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">JavaScript DOM</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">JavaScript DOM</h1>
+        <div class="stuff">
+            <span>九月 07, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Web前端/">Web前端</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p> <strong>JS DOM学习笔记</strong></p>
+<p>DOM 即 Document Object Model，文档对象模型，是 JS 操作 HTML 元素的标准编程入口。</p>
+<hr>
+<h3 id="DOM-节点类型"><a href="#DOM-节点类型" class="headerlink" title="DOM 节点类型"></a>DOM 节点类型</h3><ol>
+<li>元素节点</li>
+<li>属性节点</li>
+<li>文本节点</li>
+<li>注释节点</li>
+<li>文档节点</li>
+</ol>
+<h3 id="获取-HTML-内容："><a href="#获取-HTML-内容：" class="headerlink" title="获取 HTML 内容："></a>获取 HTML 内容：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">''</span>);	</span><br><span class="line"><span class="built_in">document</span>.getElementsByTagName(<span class="string">''</span>)[ ];</span><br><span class="line"><span class="built_in">document</span>.getElementsByName()[ ];   <span class="comment">//常用于form\img\ifarame</span></span><br><span class="line"><span class="built_in">document</span>.getElementsByClassName()[ ];</span><br><span class="line"><span class="comment">//静态类，无实时性的副本</span></span><br><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">'div &gt; span strong.dom'</span>);</span><br><span class="line"><span class="built_in">document</span>.querySelectorAll(<span class="string">''</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="遍历节点"><a href="#遍历节点" class="headerlink" title="遍历节点"></a>遍历节点</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sth.parentNode;<span class="comment">//一个元素只有一个父节点【top为document】</span></span><br><span class="line">sth.childNodes;<span class="comment">//子节点</span></span><br><span class="line">sth.firstChild;<span class="comment">//第一个节点</span></span><br><span class="line">sth.lastChild;<span class="comment">//最后一个节点</span></span><br><span class="line">sth.nextSibling;<span class="comment">//下个兄弟节点</span></span><br><span class="line">sth.previousSibling;<span class="comment">//上个兄弟节点</span></span><br><span class="line"><span class="comment">//遍历元素节点【IE9.0以下仅支持children】</span></span><br><span class="line">sth.parentElement;<span class="comment">//父元素</span></span><br><span class="line">sth.children;</span><br><span class="line">sth.children.length;</span><br><span class="line">sth.firstElementChild/lastElementChild;<span class="comment">//元素仔</span></span><br><span class="line">sth.next/previous ElementSibling;</span><br></pre></td></tr></table></figure>
+
+<p><em>节点的四个属性</em>和一个方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">nodeName   div.firstChild.nodeName = <span class="string">"P"</span>;    <span class="comment">//元素标签名，大写只读</span></span><br><span class="line">nodeValue  div.childNodes[<span class="number">0</span>].nodeValue;		<span class="comment">//文本注释内容，可读写</span></span><br><span class="line">nodeType   <span class="number">1.</span>元素	<span class="number">2.</span>属性 <span class="number">3.</span>文本 <span class="number">8.</span>注释 <span class="number">9.</span>文档</span><br><span class="line">attributes 属性返回指定节点属性的集合。</span><br><span class="line">hasChildNodes();	方法，判断有无子节点的方法		<span class="comment">//不包括属性节点(写在节点里面)</span></span><br></pre></td></tr></table></figure>
+
+<p>案例：选出元素节点，不使用children</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">retEleChild</span>(<span class="params">node</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> temp = &#123;</span><br><span class="line">        length : <span class="number">0</span>,</span><br><span class="line">        push : <span class="built_in">Array</span>.prototype.push,</span><br><span class="line">        splice : <span class="built_in">Array</span>.prototype.splice<span class="comment">//类数组转换必备</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">var</span> child = node.childNodes,</span><br><span class="line">        len = child.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len; i ++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(child[i].nodeType === <span class="number">1</span>)&#123;</span><br><span class="line">            temp.push(child[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="DOM-继承树"><a href="#DOM-继承树" class="headerlink" title="DOM 继承树"></a>DOM 继承树</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">__proto__ </span><br><span class="line">从源头到<span class="built_in">document</span>：</span><br><span class="line"><span class="built_in">Object</span></span><br><span class="line">EventTarget</span><br><span class="line">Node</span><br><span class="line">Document【原型定义了getElementByName】</span><br><span class="line">HTMLDocument【原型定义了getElementsByTagName】</span><br><span class="line"><span class="built_in">document</span>【通过 <span class="built_in">document</span>.documentElement 代表了 HTML文档】</span><br></pre></td></tr></table></figure>
+
+<p>增删改查</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">增：</span><br><span class="line"><span class="built_in">document</span>.createElement(<span class="string">''</span>); <span class="comment">// 常用</span></span><br><span class="line">docuemnt.createTextNode(<span class="string">'xxx'</span>);	<span class="comment">// 文本节点</span></span><br><span class="line"><span class="built_in">document</span>.createComment(<span class="string">'xxx'</span>); <span class="comment">// 注释</span></span><br><span class="line">插：</span><br><span class="line">sth.appendChild(span);<span class="comment">//类等push()；是剪切</span></span><br><span class="line">ParentNode.insertBefore(a,b);<span class="comment">//父级调用，a插到b之前</span></span><br><span class="line"><span class="comment">// eg:</span></span><br><span class="line">	div.insertBefore(strong, span);</span><br><span class="line">	div.insertBefore(i,strong);</span><br><span class="line">	<span class="comment">// insert strong before span, then insert i before string</span></span><br><span class="line">	i strong span</span><br><span class="line">删：</span><br><span class="line">parent.removeChild();<span class="comment">//剪切出来</span></span><br><span class="line">parent.remove();<span class="comment">//真正的销毁，不存在了</span></span><br><span class="line">改：</span><br><span class="line">parentNode.replaceChild(newth, origin);</span><br><span class="line">div.replaceChild(p, strong);<span class="comment">//把strong剪切出来替换成p</span></span><br><span class="line"><span class="comment">// replaceChild strong with p.</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Element"><a href="#Element" class="headerlink" title="Element"></a>Element</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">属性：</span><br><span class="line">.innerHTML (获得文本内容)【常用】</span><br><span class="line">.innerText (老火狐没有)  .textContent  (老IE没有)</span><br><span class="line">方法：</span><br><span class="line">.setAttribute(<span class="string">'class'</span>, <span class="string">'demo'</span>);</span><br><span class="line">.getAttribute(<span class="string">'id'</span>);</span><br><span class="line">.className = <span class="string">"xxx"</span>;   更改属性名</span><br></pre></td></tr></table></figure>
+
+<p>案例：给所有标签添加属性：this-name，赋值为该标签的节点名字</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> all = <span class="built_in">document</span>.getElementByTagName(<span class="string">'*'</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; all.length; i ++)&#123;</span><br><span class="line">    all[i].setAttribute(<span class="string">'this-name'</span>, all[i].nodeName);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                    
+                        <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='c42664db2c73c57b46a6'
+        data-cs='fb8b8978b949c370c1a656844c94b23a571dd62f'
+        data-r='Z-Schang.github.io'
+        data-o='Z-Schang'
+        data-a='Z-Schang'
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM-节点类型"><span class="toc-number">1.</span> <span class="toc-text">DOM 节点类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取-HTML-内容："><span class="toc-number">2.</span> <span class="toc-text">获取 HTML 内容：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#遍历节点"><span class="toc-number">3.</span> <span class="toc-text">遍历节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM-继承树"><span class="toc-number">4.</span> <span class="toc-text">DOM 继承树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Element"><span class="toc-number">5.</span> <span class="toc-text">Element</span></a></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
