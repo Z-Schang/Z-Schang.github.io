@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html lang class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JavaScript 事件 - Schang&#39;s Blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="schang,"> 
+    <meta name="description" content=" JS 学习笔记
+事件是交互体验的核心
+
+事件事件绑定
+onxxx 绑定：兼容性好，等同于写在 HTML 标签内
+div.addEventListener(事件类型, func, false)：可绑,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Schang&#39;s Blog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">Schang&#39;s Blog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">JavaScript 事件</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">JavaScript 事件</h1>
+        <div class="stuff">
+            <span>九月 07, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Web前端/">Web前端</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p> <strong>JS 学习笔记</strong></p>
+<p>事件是交互体验的核心</p>
+<hr>
+<h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><h4 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h4><ul>
+<li>onxxx 绑定：兼容性好，等同于写在 HTML 标签内</li>
+<li>div.addEventListener(事件类型, func, false)：可绑定多个处理函数，，第三个参数配置”是否捕获”。<strong>函数地址相同则只执行一次</strong></li>
+<li>div.attachEvent(‘onclick’, function(){})：兼容IE，<strong>this 指向 window，函数地址相同则只执行一次</strong></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 封装一个事件绑定</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addEvent</span>(<span class="params">elem, type, handle</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(elem.addEventListener)&#123;</span><br><span class="line">        elem.addEventListener(type, handle, <span class="literal">false</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(elem.attachEvent)&#123;</span><br><span class="line">        elem.attachEvent(<span class="string">'on'</span> + type, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            handle.call(elem);<span class="comment">// 因为this指向window，需要通过call来改使this指向element</span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        elem[<span class="string">'on'</span> + type] = handle;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//删除事件</span></span><br><span class="line">sth.onxxx = <span class="literal">false</span>;</span><br><span class="line">sth.removeEventListener(<span class="string">'xxx'</span>, func, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h4><p>事件冒泡：由子到父，自底而上，结构上嵌套</p>
+<p>不冒泡的事件：focus / blur / change / submit / reset / select</p>
+<p>取消冒泡：event.stopPropagation();【IE：event.cancelBubble = true】</p>
+<p>事件捕获：由父到子，使用方法：sth.addEventListener(‘click’, func, true);</p>
+<p>IE事件捕获：div.setCapture()；解除：div.releaseCapture()</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 封装阻止冒泡</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">stopBubble</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(event.stopPropagation) &#123;</span><br><span class="line">        event.stopPropagation();</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        event.cancelBubble = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="默认事件"><a href="#默认事件" class="headerlink" title="默认事件"></a>默认事件</h4><p>表单提交、a标签跳转，右键菜单<br>取消默认：return false;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">表单提交、a标签跳转，右键菜单</span><br><span class="line">取消默认：<span class="keyword">return</span> <span class="literal">false</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="事件分类"><a href="#事件分类" class="headerlink" title="事件分类"></a>事件分类</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onscroll = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">window</span>.pageXOffset + <span class="string">' '</span> + <span class="built_in">window</span>.pageYOffset);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">事件源对象：</span><br><span class="line">event.target【火狐独有】</span><br><span class="line">event.srcElement【IE独有】</span><br><span class="line">chrome兼有</span><br><span class="line"><span class="comment">// 封装获取事件对象</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tar</span>(<span class="params">elem</span>) </span>&#123;</span><br><span class="line">    elem.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> event = e || <span class="built_in">window</span>.event;</span><br><span class="line">        <span class="keyword">var</span> target = event.target || event.srcElement;</span><br><span class="line">        <span class="built_in">console</span>.log(target);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h4><p>利用事件冒泡、事件源对象进行处理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 点击li打印对应数字</span></span><br><span class="line"><span class="keyword">var</span> ul = <span class="built_in">document</span>.getElementById(<span class="string">'u'</span>);</span><br><span class="line">ul.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> event = e || <span class="built_in">window</span>.event;</span><br><span class="line">    <span class="keyword">var</span> target = event.target || event.srcElement;</span><br><span class="line">    <span class="built_in">console</span>.log(target.innerText);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="鼠标事件"><a href="#鼠标事件" class="headerlink" title="鼠标事件"></a>鼠标事件</h4><p>click = mousedown + mouseup</p>
+<p>mouseover = mouseenter</p>
+<p>mouseout = mouseleave</p>
+<p>移动端：touchstart、touchmove、touchend</p>
+<p>鼠标键：0左 1中 2右</p>
+<p>DOM3规定 click 事件只能监听左键，通过 mousedown / mouseUp 来判断鼠标键</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 鼠标点击停留300毫秒，打开；大于300毫秒，拖拽</span></span><br><span class="line"><span class="keyword">var</span> fTime = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> lTime = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> key = <span class="literal">false</span>;</span><br><span class="line"><span class="built_in">document</span>.onmousedown = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    fTime = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.onmouseUp = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    lTime = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line">    <span class="keyword">if</span>(lTime - fTime &lt; <span class="number">300</span>) &#123;</span><br><span class="line">        key = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(key)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'click'</span>);</span><br><span class="line">        key = <span class="literal">false</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        move();<span class="comment">// 拖拽函数</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="键盘事件"><a href="#键盘事件" class="headerlink" title="键盘事件"></a>键盘事件</h4><p>keydown、keypress、keyup</p>
+<p>keydown 用于检测所有案件，包括操作类按键</p>
+<p>keypress【ASCII码】</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 打啥输出啥【ASCII码和对应的字符】</span></span><br><span class="line"><span class="built_in">document</span>.onkeypress = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e.charCode, <span class="built_in">String</span>.fromCharCode(e.charCode));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="文本类操作"><a href="#文本类操作" class="headerlink" title="文本类操作"></a>文本类操作</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> input = <span class="built_in">document</span>.getElementByTagName(<span class="string">'input'</span>)[<span class="number">0</span>];</span><br><span class="line"><span class="comment">// 输入时触发</span></span><br><span class="line">input.oninput = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.value);<span class="comment">//实时更新</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 输入完失焦触发</span></span><br><span class="line">input.change = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.value);<span class="comment">//失焦触发</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;input type = <span class="string">"text"</span> value = <span class="string">"xxx"</span> </span><br><span class="line">onfocus = <span class="string">"if(this.value=='xxx')&#123;this.value='xxx'&#125;"</span> onblur=<span class="string">"if(this.value=='xxx')&#123;this.value='xxx'&#125;"</span>&gt;</span><br></pre></td></tr></table></figure>
+
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                    
+                        <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='c42664db2c73c57b46a6'
+        data-cs='fb8b8978b949c370c1a656844c94b23a571dd62f'
+        data-r='Z-Schang.github.io'
+        data-o='Z-Schang'
+        data-a='Z-Schang'
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#事件"><span class="toc-number">1.</span> <span class="toc-text">事件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#事件绑定"><span class="toc-number">1.1.</span> <span class="toc-text">事件绑定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#事件处理"><span class="toc-number">1.2.</span> <span class="toc-text">事件处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#默认事件"><span class="toc-number">1.3.</span> <span class="toc-text">默认事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#事件分类"><span class="toc-number">1.4.</span> <span class="toc-text">事件分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#事件对象"><span class="toc-number">1.5.</span> <span class="toc-text">事件对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#事件委托"><span class="toc-number">1.6.</span> <span class="toc-text">事件委托</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#鼠标事件"><span class="toc-number">1.7.</span> <span class="toc-text">鼠标事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#键盘事件"><span class="toc-number">1.8.</span> <span class="toc-text">键盘事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文本类操作"><span class="toc-number">1.9.</span> <span class="toc-text">文本类操作</span></a></li></ol></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
