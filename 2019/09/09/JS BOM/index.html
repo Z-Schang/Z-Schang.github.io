@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>JavaScript BOM - Schang&#39;s Blog</title>
+    <title>JavaScript BOM &amp; 浏览器基础 - Schang&#39;s Blog</title>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate">
@@ -41,7 +41,7 @@ N,">
     <div class="bar" style="width: 0;"></div>
     <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
     <div title="播放/暂停" class="icon-play"></div>
-    <h3 class="subtitle">JavaScript BOM</h3>
+    <h3 class="subtitle">JavaScript BOM & 浏览器基础</h3>
     <div class="social">
         <!--<div class="like-icon">-->
             <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -59,7 +59,7 @@ N,">
     <div class="section">
         <div class="article">
     <div class='main'>
-        <h1 class="title">JavaScript BOM</h1>
+        <h1 class="title">JavaScript BOM & 浏览器基础</h1>
         <div class="stuff">
             <span>九月 09, 2019</span>
             
@@ -81,8 +81,33 @@ N,">
 </ol>
 <hr>
 <p>Demo：模拟懒加载图片</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onscroll = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    lazyLoad();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">lazyLoad</span>(<span class="params">elem</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(elem.offsetTop &lt;= <span class="built_in">window</span>.innerHeight + <span class="built_in">window</span>.pageYOffset&#123;</span><br><span class="line">       elem.timer = setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(elem.style.opacity == <span class="number">1</span>)&#123;</span><br><span class="line">            clearInterval(elem.timer);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            elem.style.opacity = <span class="built_in">parseFloat</span>(elem.style.opacity) + <span class="number">0.01</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, <span class="number">60</span>);</span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onscroll = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    lazyLoad();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">lazyLoad</span>(<span class="params">elem</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(elem.offsetTop &lt;= <span class="built_in">window</span>.innerHeight + <span class="built_in">window</span>.pageYOffset&#123;</span><br><span class="line">       <span class="comment">// 预加载过程或：</span></span><br><span class="line">       elem.timer = setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(elem.style.opacity == <span class="number">1</span>)&#123;</span><br><span class="line">            clearInterval(elem.timer);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            elem.style.opacity = <span class="built_in">parseFloat</span>(elem.style.opacity) + <span class="number">0.01</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, <span class="number">60</span>);</span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>预加载图片</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">prevLoad</span>(<span class="params">elem, url</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> pic = <span class="keyword">new</span> Image();</span><br><span class="line">    pic.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        elem.appendChild(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    pic.src = url;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="浏览器基础"><a href="#浏览器基础" class="headerlink" title="浏览器基础"></a>浏览器基础</h4><ul>
+<li>浏览器的7基组成【从外到内】<ul>
+<li>用户界面</li>
+<li>浏览器引擎</li>
+<li>渲染引擎</li>
+<li>JS引擎</li>
+<li>网络</li>
+<li>UI后端</li>
+<li>数据存储</li>
+</ul>
+</li>
+<li>渲染过程【模型渲染出图像的过程】<ul>
+<li>HTML构建DOM树</li>
+<li>CSS构建Rule树</li>
+<li>生成Render树</li>
+</ul>
+</li>
+<li>随机数生成【插播】<ul>
+<li>12~36：Math.ceil(12 + 24 * Math.random())</li>
+</ul>
+</li>
+</ul>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
@@ -113,7 +138,7 @@ N,">
     </div>
     
         <div class='side'>
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#BOM"><span class="toc-number">1.</span> <span class="toc-text">BOM</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#BOM"><span class="toc-number">1.</span> <span class="toc-text">BOM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#浏览器基础"><span class="toc-number">1.1.</span> <span class="toc-text">浏览器基础</span></a></li></ol></li></ol>
         </div>
     
 </div>
